@@ -24,4 +24,8 @@ public class Slots extends Processing {
   public Slot getSlot(int id) {
     return slots[id];
   }
+  
+  public boolean isValidSlotId(int slotId) {
+      return (slotId < Config.numberOfSlots && slotId >= 0);
+  }
 }

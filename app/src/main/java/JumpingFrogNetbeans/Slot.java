@@ -14,7 +14,6 @@ public class Slot extends Processing {
     this.slotId = slotId;
     this.positionX = (p.width - Config.totalSize + Config.slotWidth) / 2 + (Config.slotWidth + Config.slotGap) * slotId;
     this.positionY = p.height / 2 + 180;
-
   }
 
   public int getPositionX() {

@@ -18,7 +18,6 @@ public class App extends PApplet {
     public void settings() {
         size(Config.width, Config.height);
         pixelDensity(2);
-
     }
 
     public void reset() {
@@ -52,13 +51,13 @@ public class App extends PApplet {
         fill(212, 225, 87);
         stroke(205, 220, 57);
         rectMode(CENTER);
-        rect(900, 40, 200, 40);
+        rect(960, 40, 200, 40);
         fill(255);
         textAlign(CENTER, CENTER);
         textSize(20);
         stroke(255);
-        text("Solve By Steps", 900, 40);
-        
+        text("Solve By Steps", 960, 40);
+
         //Draw Frogs and Rocks
         slots.draw();
         frogs.draw();
@@ -75,30 +74,25 @@ public class App extends PApplet {
 
     @Override
     public void mousePressed() {
-//        System.out.println(solver.getTotalNumberOfJumps());
         Frog frog = frogs.getFrogFromPosition(mouseX, mouseY);
+
         //check if the no frog was clicked
         if (frog == null) {
-//            System.out.println("Frog Not Found");
             //Check if Reset button is pressed
             if (mouseX >= 20 && mouseX <= 100 && mouseY >= 20 && mouseY <= 60) {
                 //call reset function
                 System.out.println("Reset");
                 reset();
             }
-            
-            if (mouseX >= 800 && mouseX <= 1000 && mouseY >= 20 && mouseY <= 60 && !frogs.isDone()) {
+
+            if (mouseX >= 860 && mouseX <= 1040 && mouseY >= 20 && mouseY <= 60 && !frogs.isDone()) {
                 //call reset function
                 int frogId = solver.solve();
                 if (frogId != -1) {
                     frog = frogs.getFrog(frogId);
-                } 
+                }
             }
-            
         }
-
-//        return;
-        
 
         if (frog == null) {
             return;
@@ -111,14 +105,18 @@ public class App extends PApplet {
         //checking if the rock beside the frog is empty (one step is possible)
         Frog neighbor1 = frogs.getFrogOnSlot(slotId + direction);
         if (neighbor1 == null) {
-            frog.move(slots.getSlot(slotId + direction));
+            if (slots.isValidSlotId(slotId + direction)) {
+                frog.move(slots.getSlot(slotId + direction));
+            }
             return;
         }
 
         //checking if the second rock beside the frog is empty (2 steps are possible)
         Frog neighbor2 = frogs.getFrogOnSlot(slotId + 2 * direction);
         if (neighbor2 == null) {
-            frog.move(slots.getSlot(slotId + 2 * direction));
+            if (slots.isValidSlotId(slotId + direction)) {
+                frog.move(slots.getSlot(slotId + 2 * direction));
+            }
             return;
         }
 
