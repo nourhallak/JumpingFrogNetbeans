@@ -4,7 +4,7 @@ package JumpingFrogNetbeans;
 
 public class Config {
 
-  static int numberOfFrogs = 2;
+  static int numberOfFrogs = 6;
   static int numberOfSlots = numberOfFrogs + 1;
   static int slotWidth = 60;
   static int slotGap = 40;
